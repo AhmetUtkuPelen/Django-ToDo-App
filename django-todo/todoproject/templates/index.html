@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+HomePage
+{% endblock title %}
+{% block content %}
+<p class="text-primary text-center mt-3">This App Was Done By {{name}}</p>
+<div class="p-5 mb-4 container rounded-3 text-center">
+    <div class="container-fluid py-5">
+      <h1 class="fs-1 text-primary fw-bold text-center">TO-DO LIST APP</h1>
+      <p class="col-md-8"><center class="text-danger fw-bold fs-4">Python Django To-Do List</center></p>
+      <a class="btn btn-info text-white btn-lg" href={% url 'create' %} type="button">Add To-Do List</a>
+    </div>
+  </div>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="text-primary" scope="col">ToDo Name</th>
+        <th class="text-primary" scope="col">Completed?</th>
+        <th class="text-primary" scope="col">Date & Time</th>
+        <th class="text-primary" scope="col">Delete</th>
+        <th class="text-primary" scope="col">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todo_list %}
+        {% if todo.finished %}
+      <tr>
+        <td class="text-danger fs-3 text-decoration-line-through">{{todo.title}}</td>
+        <td><a href="{% url 'finished' todo.id %}" type="button" class="btn btn-success">Done</a></td>
+        <td class="text-secondary">{{todo.date}}</td>
+        <td><a href="{% url 'delete' todo.id %}" type="button" class="btn btn-danger">Delete</a></td>
+        <td><a href="{% url 'update' todo.id %}" type="button" class="btn btn-info text-white">Update</a></td>
+      </tr>
+        {% else %}
+        <tr>
+          <td class="text-danger fs-3">{{todo.title}}</td>
+          <td><a href="{% url 'notfinished' todo.id %}" type="button" class="btn btn-warning">Nope</a></td>
+          <td class="text-secondary">{{todo.date}}</td>
+          <td><a href="{% url 'delete' todo.id %}" type="button" class="btn btn-danger">Delete</a></td>
+          <td><a href="{% url 'update' todo.id %}" type="button" class="btn btn-info text-white">Update</a></td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+About
+{% endblock title %}
+{% block content %}
+<div class="p-5 mb-4 container rounded-3 text-center">
+    <div class="container-fluid py-5">
+      <h1 class="fs-1 text-primary fw-bold text-center">TO-DO LIST APP</h1>
+      <p class="col-md-8"><center class="text-danger fw-bold fs-4">Python Django To-Do List</center></p>
+      <a class="btn btn-info text-white btn-lg" href={% url 'create' %} type="button">Add To-Do List</a>
+    </div>
+  </div>
+{% endblock content %}
